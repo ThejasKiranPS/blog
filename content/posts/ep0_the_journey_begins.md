@@ -4,7 +4,7 @@ date: 2022-05-31T19:27:35+05:30
 draft: false
 ---
 
-![image](../../static/Gentlemen.jpg)
+![image](/blog/static/Gentlemen.jpg)
 
 Hey! I'm Thejas Kiran P S, a sophomore pursuing my Bachelor's in
 Computer Science. I have been selected to GNOME organization as a GSoC'22
