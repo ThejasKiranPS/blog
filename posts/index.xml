@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on My Blog</title><link>https://thejaskiranps.github.io/blog/posts/</link><description>Recent content in Posts on My Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 31 May 2022 19:27:35 +0530</lastBuildDate><atom:link href="https://thejaskiranps.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>ep0: The Journey Begins</title><link>https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/</link><pubDate>Tue, 31 May 2022 19:27:35 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/</guid><description>Hey! I&amp;rsquo;m Thejas Kiran P S, a sophomore pursuing my Bachelor&amp;rsquo;s in Computer Science. I have been selected to GNOME organization as a GSoC'22 contributor and will be working on Pitivi. Pitivi is a non-linear video editor based on the GStreamer Editing Services library.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on My Blog</title><link>https://thejaskiranps.github.io/blog/posts/</link><description>Recent content in Posts on My Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 09 Jul 2022 00:18:15 +0530</lastBuildDate><atom:link href="https://thejaskiranps.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Pitivi GSoC22 update - Improved audiopreviewer</title><link>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</link><pubDate>Sat, 09 Jul 2022 00:18:15 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</guid><description>Intro =&amp;gt;
+Hey there! It&amp;rsquo;s been a month since I started working on Pitivi and here&amp;rsquo;s my progress.
+More precise audio waveform Pitivi now produces 5x more detailed waveforms for audio (MR not yet merged). These are the some snaps of before and after (top &amp;amp; bottom respectively). If you have any suggestions or ideas for improving the audio preview then please do mention them here. We would love to hear it!</description><content:encoded><![CDATA[<p><a href="https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/">Intro =&gt;</a></p>
+<p>Hey there!
+It&rsquo;s been a month since I started working on Pitivi and here&rsquo;s my progress.</p>
+<h3 id="more-precise-audio-waveform">More precise audio waveform</h3>
+<p>Pitivi now produces 5x more detailed waveforms for audio (<a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/444">MR not yet merged</a>).
+<img loading="lazy" src="/blog/static/pitivi-waveforms.jpg" alt="before and after"  />
+
+These are the some snaps of before and after (top &amp; bottom respectively). If you have any suggestions or ideas
+for improving the audio preview then please do mention them <a href="https://gitlab.gnome.org/GNOME/pitivi/-/issues/2532">here</a>. We would love to hear it!</p>
+<p>During this I also found another bug which were causing inacurrate rendering of waveforms
+while changing the speed of clip and fixed that too.</p>
+<p><a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests?scope=all&amp;state=merged&amp;author_username=thejaskiranps">Click here</a> to see all other minor fixes.</p>
+<p>And of course all of these were done with huge help from my mentors Fabián Orccón and Alexandru Băluț.</p>
+<p>Next we are planning to <a href="https://gitlab.gnome.org/GNOME/pitivi/-/issues/1345">bring back the autoaligner</a>. It allows one-click alignment of audio clips with different recordings of the same audio.</p>
+]]></content:encoded></item><item><title>ep1: Reading Code Is Harder</title><link>https://thejaskiranps.github.io/blog/posts/ep1_reading_code_is_hard/</link><pubDate>Fri, 08 Jul 2022 11:23:58 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/ep1_reading_code_is_hard/</guid><description>Context
+When the GSoC results were announced what I thought was that I would be smashing my fingers on the keyboard and writing code here and there. But oh boy was I wrong! I have seen many memes about this but never thought the ratio of reading to writing code would be this huge. Most of the fixes for issues I had fixed were a oneliner. Although fixing them left me unsatisfied at first, later I started to get the hang of it and realised that I love reading too.</description><content:encoded><![CDATA[<p><a href="https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/">Context</a></p>
+<p>When the GSoC results were announced what I thought was that I would
+be smashing my fingers on the keyboard and writing code here and
+there. But oh boy was I wrong! I have seen many memes about this but never
+thought the ratio of reading to writing code would be this huge. Most
+of the fixes for issues I had fixed were a oneliner.
+<img loading="lazy" src="/blog/static/one-liner.jpg" alt="a meme"  />
+</p>
+<p>Although fixing them left me unsatisfied at first, later I
+started to get the hang of it and realised that I love reading
+too. That moment when you understand what you have been searching for
+a long time ( a &ldquo;click&rdquo;) is very rewarding.</p>
+<p>It&rsquo;s like when you start reading some unfamiliar code,
+you are given a dim flashlight to explore a dark room and with it you could
+see individual objects in the room one at a time. After some digging
+around you&rsquo;ll find the codeblock which acts like the switch of a
+bulb. When you flick it, suddenly everything in the room is visible and you
+understand how the individual objects are related to each other and
+how they fit together to make up the whole room.</p>
+<h2 id="big-shoutout-to-org-mode">Big shoutout to org-mode</h2>
+<p>I&rsquo;m doing gsoc along with my classes, so most of the time I would have
+to pause the work to do something else. This was really
+frustrating at the beginning because by the time of resuming the work,
+I would have forgotten many things and have to again figure out how
+they work.
+<img loading="lazy" src="/blog/static/focus.jpg" alt="another meme"  />
+</p>
+<p>So I decided to write down the things I&rsquo;m doing, what I should do and
+what I found out. Org-mode is helping me a lot and compensates for my bad
+memory. If you are also facing this issue, I would suggest you to note down
+things somewhere. Here&rsquo;s a peak of how I do it
+<img loading="lazy" src="/blog/static/org-mode-pitivi.png" alt="image"  />
+</p>
+<p>That&rsquo;s all for now. Bye :)</p>
+]]></content:encoded></item><item><title>ep0: The Journey Begins</title><link>https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/</link><pubDate>Tue, 31 May 2022 19:27:35 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/</guid><description>Hey! I&amp;rsquo;m Thejas Kiran P S, a sophomore pursuing my Bachelor&amp;rsquo;s in Computer Science. I have been selected to GNOME organization as a GSoC'22 contributor and will be working on Pitivi. Pitivi is a non-linear video editor based on the GStreamer Editing Services library.
 My work here will be to improve the Timeline component of the application by solving currently open issues and other bugs (Also introduce some new features maybe?</description><content:encoded><![CDATA[<p><img loading="lazy" src="/blog/static/Gentlemen.jpg" alt="image"  />
 </p>
 <p>Hey! I&rsquo;m Thejas Kiran P S, a sophomore pursuing my Bachelor&rsquo;s in
