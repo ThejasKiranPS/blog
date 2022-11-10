@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on My Blog</title><link>https://thejaskiranps.github.io/blog/posts/</link><description>Recent content in Posts on My Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 09 Jul 2022 00:18:15 +0530</lastBuildDate><atom:link href="https://thejaskiranps.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Pitivi GSoC22 update - Improved audiopreviewer</title><link>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</link><pubDate>Sat, 09 Jul 2022 00:18:15 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</guid><description>Intro =&amp;gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on My Blog</title><link>https://thejaskiranps.github.io/blog/posts/</link><description>Recent content in Posts on My Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Nov 2022 21:06:06 +0530</lastBuildDate><atom:link href="https://thejaskiranps.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Wrapping things up | GSoC22@Pitivi</title><link>https://thejaskiranps.github.io/blog/posts/final/</link><pubDate>Thu, 10 Nov 2022 21:06:06 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/final/</guid><description>Overview GSoC 2022 is nearing its end and now it&amp;rsquo;s time to wrap things up. My task was to Improve the Timeline component of Pitivi and this is my status report.
+Work Report Fix a dot appearing when clicking on the timeline - !436 Pitivi uses a custom widget for showing the selected area while dragging &amp;amp; selecting. This Marquee rectangle gets drawn when the user performs a drag action. We only moved this rectangle to a new position when the user starts dragging.</description><content:encoded><![CDATA[<h1 id="overview">Overview</h1>
+<p>GSoC 2022 is nearing its end and now it&rsquo;s time to wrap things up. My task was to
+Improve the Timeline component of Pitivi and this is my status report.</p>
+<h1 id="work-report">Work Report</h1>
+<h2 id="fix-a-dot-appearing-when-clicking-on-the-timeline---436httpsgitlabgnomeorggnomepitivi-merge_requests436">Fix a dot appearing when clicking on the timeline - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/436">!436</a></h2>
+<p>Pitivi uses a custom widget for showing the selected area while dragging &amp; selecting. This Marquee rectangle gets drawn when the user performs a drag action. We only moved this rectangle to a new position when the user starts dragging. So when there occurs
+a mouse click, the Marquee box get&rsquo;s drawn at the previous drag_end position which appears as a dot.</p>
+<p>It was fixed by adding the code to move the marquee to the callback of the event when a user first clicks. Now when clicking, the box gets drawn under the mouse.</p>
+<h2 id="more-precise-audio-waveforms---444httpsgitlabgnomeorggnomepitivi-merge_requests444">More precise audio waveforms - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/444">!444</a></h2>
+<p>Pitivi now shows 5x more detailed waveforms for audio!
+<img loading="lazy" src="/blog/static/pitivi-waveforms.jpg" alt="image"  />
+
+These are some snaps of before and after (top &amp; bottom respectively).</p>
+<h2 id="bring-back-the-auto-aligner----445httpsgitlabgnomeorggnomepitivi-merge_requests445">Bring back the auto aligner ⭐ - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/445">!445</a></h2>
+<p>If I had to pick a favorite, this is definitely it. Developing AutoAligner was just pure bliss.
+To be honest, this was the scariest task on my to-do list because I thought it would be a very math-intensive &amp; complex feature to implement.</p>
+<p>Pitivi had this cool feature some time before but it got lost when the method of
+waveform generation and its caching changed.</p>
+<p><img loading="lazy" src="/blog/static/align.gif" alt="image"  />
+</p>
+<p>This feature allows users to align audio clips recorded from different sources.
+Here is the basic idea behind how it currently works:</p>
+<p>Consider the two waves given below.</p>
+<ul>
+<li>To calculate how well these waves match,
+we add the products of values from each wave at a given time. This final sum can be used to measure the cross-correlation
+between these two waves.
+<img loading="lazy" src="/blog/static/corr1.png" alt="image"  />
+</li>
+<li>Then the second wave is shifted with respect to the first one so that the pair of values from each wave at a given time is
+different than before and the calculation is repeated.
+<img loading="lazy" src="/blog/static/corr2.png" alt="image"  />
+
+As we can see the correlation value is highest when the peaks of waves are most similar.</li>
+</ul>
+<p>These videos helped a lot in understanding the basics:</p>
+<ul>
+<li><a href="https://youtu.be/RO8s1TrElEw">https://youtu.be/RO8s1TrElEw</a></li>
+<li><a href="https://youtu.be/TS8HHW-HlGA">https://youtu.be/TS8HHW-HlGA</a></li>
+</ul>
+<p>This is the basic idea behind the alignment. The actual calculations are handled by <a href="https://scipy.org/">SciPy</a> which
+makes the alignment process very fast ⚡.</p>
+<h2 id="allow-separate-selection-of-ungrouped-clips---448httpsgitlabgnomeorggnomepitivi-merge_requests448">Allow separate selection of ungrouped clips - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/448">!448</a></h2>
+<p>We use <a href="https://gstreamer.freedesktop.org/documentation/gst-editing-services/geslayer.html?gi-language=python#ges_layer_get_clips_in_interval"><code>GES.Layer.get_clips_in_interval</code></a> to get the clips in a layer within an interval. The x coordinates of drag-selection are converted to
+time units(start &amp; end) and they are passed to the above-mentioned function to get the clips that are to be selected.</p>
+<p>The problem with this is: although Audio &amp; Video clips reside in the same layer, they exist in different halves of the layer.
+Video clips are drawn in the upper half and Audio clips are in the lower half of the layer. So even when the user meant to just select the video
+clip by dragging over it, the function also returns audio clips, if any, overlapping with the same interval.</p>
+<p>This was fixed by calculating the position of the selection-rectangle edges relative to the layer and deciding which half does the selection area starts/ends. Then we filter the clips returned from the <code>get_clips_in_interval</code> and return only the to-be-selected clips.</p>
+<h2 id="migrate-to-gstreamers-new-mono-repo----451httpsgitlabgnomeorggnomepitivi-merge_requests451">Migrate to GStreamer&rsquo;s new mono-repo  - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/451">!451</a></h2>
+<p>As of 28 September 2021, Gstreamer modules have been merged into a single git repository to simplify development workflows and CI. We are
+working on porting to monorepo and updating the GNOME SDK used in flatpak.</p>
+<h2 id="others">Others</h2>
+<h3 id="update-colors-when-the-theme-is-changed---427httpsgitlabgnomeorggnomepitivi-merge_requests427">Update colors when the theme is changed - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/427">!427</a></h3>
+<h3 id="fix-ticks-in-ruler-disappearing-at-some-intervals---437httpsgitlabgnomeorggnomepitivi-merge_requests437">Fix ticks in ruler disappearing at some intervals - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/437">!437</a></h3>
+<h3 id="fix-ctrlclick-clears-the-whole-selection---440httpsgitlabgnomeorggnomepitivi-merge_requests440">Fix ctrl+click clears the whole selection - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/440">!440</a></h3>
+<h3 id="fix-waveforms-not-scaling-when-changing-clip-speed---443httpsgitlabgnomeorggnomepitivi-merge_requests443">Fix waveforms not scaling when changing clip speed - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/443">!443</a></h3>
+<h3 id="modify-how-transitions-are-represented---450httpsgitlabgnomeorggnomepitivi-merge_requests450">Modify how transitions are represented - <a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/450">!450</a></h3>
+<h3 id="list-of-all-merge-requestshttpsgitlabgnomeorggnomepitivi-merge_requestsscopeallstateallauthor_usernamethejaskiranps"><a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests?scope=all&amp;state=all&amp;author_username=thejaskiranps">List of all merge requests</a></h3>
+<h2 id="rest-of-the-issues">Rest of the issues</h2>
+<p>My GSoC proposal had some more issues mentioned mostly relating to dragging events. These were unable to complete as Pitivi is being
+ported to Gtk4.0 parallelly. The common source of the issues was that the drag events won&rsquo;t get registered if the mouse pointer leaves the
+source element. In Gtk4 these events get delivered until the mouse is released.</p>
+<p>So I started trying to help Aryan with porting stuff and currently, I am working on finding a replacement for <code>gtksink</code> which works in gtk4.</p>
+<h2 id="finalizing">Finalizing</h2>
+<p>Debugging issues in such a large codebase (relative to what I have worked on till now) was very hard, but the joy and excitement you get
+when you find the source and fix those bugs makes them totally worth it. After completing the WIP issues, I would like to continue
+contributing and help in finishing the gtk4 port.</p>
+<p>Finally my mentors - Alexandru Băluț &amp;  Fabián Orccón,
+I cannot thank them enough for their support and guidance. They made a safe and friendly environment for me to ask for help without any
+resistance. When I get stuck on something they helped a lot to guide me to the solution. Once again, Thank you so much!</p>
+<p>That&rsquo;s it!  I&rsquo;m concluding here with a smile on my face :)</p>
+<p>See you soon 👋</p>
+]]></content:encoded></item><item><title>Pitivi GSoC22 update - Improved audiopreviewer</title><link>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</link><pubDate>Sat, 09 Jul 2022 00:18:15 +0530</pubDate><guid>https://thejaskiranps.github.io/blog/posts/gsoc22-update-1/</guid><description>Intro =&amp;gt;
 Hey there! It&amp;rsquo;s been a month since I started working on Pitivi and here&amp;rsquo;s my progress.
 More precise audio waveform Pitivi now produces 5x more detailed waveforms for audio (MR not yet merged). These are the some snaps of before and after (top &amp;amp; bottom respectively). If you have any suggestions or ideas for improving the audio preview then please do mention them here. We would love to hear it!</description><content:encoded><![CDATA[<p><a href="https://thejaskiranps.github.io/blog/posts/ep0_the_journey_begins/">Intro =&gt;</a></p>
 <p>Hey there!
