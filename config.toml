@@ -2,6 +2,8 @@ baseURL = 'https://thejaskiranps.github.io/blog/'
 languageCode = 'en-us'
 title = 'My Blog'
 theme = "papermod"
+enableEmoji = 'true'
+
 
 [Params]
 	ShowFullTextinRSS = true
